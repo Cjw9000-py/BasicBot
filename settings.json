@@ -1,0 +1,12 @@
+{
+  "token": "ODU5MTIxNjQ4NTkwMjU4MjA2.YNoFYg.HBrWXtyYTp6yYiYXuEhUKXWd32E",
+  "prefix": "!",
+  "owner": 548607822871527454,
+  "home_guild": "",
+  "extensions": [
+    "extensions.moderation",
+    "extensions.guild_setup",
+    "extensions.discord_logging",
+    "extensions.hot_reload"
+  ]
+}
