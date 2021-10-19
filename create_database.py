@@ -1,6 +1,6 @@
 import sqlite3, os
 
-# os.system('mv db.sqlite db_backup.sqlite')
+os.system('mv db.sqlite db_backup.sqlite') # yes linux is the best
 conn = sqlite3.connect('db.sqlite')
 
 try:
@@ -16,23 +16,10 @@ try:
     conn.execute(
     """CREATE TABLE moderation_queue (
         guild_id VARCHAR(100) NOT NULL,
-        member_id VARCHAR(100),
-        action INTEGER,
-        created VARCHAR(10),
-        timeout VARCHAR(10),
-        PRIMARY KEY(guild_id)
+        member_id VARCHAR(100) NOT NULL,
+        action INTEGER NOT NULL,
+        created VARCHAR(10) NOT NULL,
+        timeout VARCHAR(10) NULL,
     )""")
-except Exception as e:
-    print(e)
-
-cursor = conn.cursor()
-try:
-    cursor.execute('INSERT INTO guild_settings (guild_id, mute_role, logging_channel) VALUES ("124", "1234", "9123")')
-except Exception as e:
-    print(e)
-conn.commit()
-
-try:
-    print(cursor.execute('SELECT * FROM guild_settings').fetchall())
 except Exception as e:
     print(e)

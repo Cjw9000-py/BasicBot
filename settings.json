@@ -2,7 +2,6 @@
   "token": "<token>",
   "prefix": "!",
   "owner": 548607822871527454,
-  "home_guild": "",
   "extensions": [
     "extensions.moderation",
     "extensions.guild_setup",

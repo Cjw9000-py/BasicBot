@@ -10,14 +10,13 @@ class Setup(commands.Cog):
 
     @commands.command(name='set-muterole')
     async def set_mute_role(self, ctx, mute_role: discord.Role):
-        print(ctx.guild.id, mute_role.id)
         cursor = self.client.db.cursor()
         try:
             cursor.execute(
                 f'INSERT INTO guild_settings (guild_id, mute_role) VALUES ("{ctx.guild.id}", "{mute_role.id}")'
             )
         except Exception:
-            self.client.db.execute(
+            cursor.execute(
                 f'UPDATE guild_settings SET mute_role = "{mute_role.id}" WHERE guild_id = "{ctx.guild.id}"'
             )
         self.client.db.commit()
@@ -25,13 +24,14 @@ class Setup(commands.Cog):
 
     @commands.command(name='set-logging-channel')
     async def set_log_channel(self, ctx, logging_channel: discord.TextChannel):
+        cursor = self.client.db.cursor()
         try:
-            self.client.db.execute(
+            cursor.execute(
                 f'INSERT INTO guild_settings (guild_id, logging_channel) VALUES ("{ctx.guild.id}", "{logging_channel.id}")'
 
             )
         except Exception:
-            self.client.db.execute(
+            cursor.execute(
                 f'UPDATE guild_settings SET logging_channel = "{logging_channel.id}" WHERE guild_id = "{ctx.guild.id}"'
             )
         await ctx.send('Logging channel was set to ' + logging_channel.mention)
